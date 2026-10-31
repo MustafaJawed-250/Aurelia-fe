@@ -1,0 +1,247 @@
+/* =========================================================
+   HERO — text LEFT, 3D watch RIGHT (swapped layout)
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.15fr);
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 70% 40%, #1a1814 0%, var(--bg-deep) 55%);
+  padding-top: var(--header-h);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3rem);
+  max-width: 520px;
+  justify-self: end;
+  width: 100%;
+  pointer-events: none;
+  text-align: left;
+}
+
+.hero__content .btn {
+  pointer-events: auto;
+}
+
+.hero__content .h1 {
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  word-wrap: break-word;
+}
+
+.hero__sub {
+  margin: 1.25rem 0 2rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+.hero__3d {
+  position: relative;
+  z-index: 1;
+  height: calc(100vh - var(--header-h));
+  height: calc(100dvh - var(--header-h));
+  min-height: 420px;
+  width: 100%;
+}
+
+.watch3d-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.watch3d-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.watch3d-fallback__inner {
+  text-align: center;
+}
+
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero__scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: var(--border-strong);
+  margin: 0.5rem auto 0;
+}
+
+/* Home sections */
+.strap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.strap-card {
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color var(--transition), transform var(--transition);
+  min-width: 0;
+}
+
+.strap-card:hover {
+  border-color: var(--gold-muted);
+  transform: translateY(-3px);
+}
+
+.strap-card .h3 {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.story-visual__frame {
+  aspect-ratio: 4/5;
+  background: linear-gradient(145deg, #1e1c18, #12110f);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+  max-width: 100%;
+}
+
+.story-visual__frame::after {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+}
+
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.craft-item {
+  min-width: 0;
+}
+
+.craft-item h3 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.craft-item p {
+  font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+  line-height: 1.65;
+}
+
+/* ---------- Tablet 768–1023 ---------- */
+@media (max-width: 1023px) {
+  .hero {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+
+  .hero__3d {
+    min-height: 380px;
+  }
+
+  .strap-grid,
+  .craft-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- Mobile / large phone ≤767 ---------- */
+@media (max-width: 767px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: auto;
+    padding-top: var(--header-h);
+  }
+
+  /* Watch on top, text below on mobile for visibility */
+  .hero__3d {
+    order: 1;
+    height: min(52vh, 420px);
+    min-height: 280px;
+  }
+
+  .hero__content {
+    order: 2;
+    justify-self: stretch;
+    max-width: 100%;
+    padding: 1.5rem clamp(1rem, 5vw, 1.5rem) 3.5rem;
+  }
+
+  .hero__scroll-hint {
+    display: none;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .story-visual {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
+
+/* ---------- Small mobile ≤375 ---------- */
+@media (max-width: 375px) {
+  .hero__3d {
+    height: min(48vh, 340px);
+    min-height: 240px;
+  }
+
+  .hero__content {
+    padding-bottom: 2.5rem;
+  }
+
+  .strap-grid,
+  .craft-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .strap-card {
+    padding: 1.25rem 1rem;
+  }
+}
+
+/* ---------- Desktop wide ---------- */
+@media (min-width: 1440px) {
+  .hero {
+    grid-template-columns: minmax(360px, 0.85fr) minmax(480px, 1.2fr);
+  }
+
+  .hero__content {
+    padding-right: 4rem;
+  }
+}

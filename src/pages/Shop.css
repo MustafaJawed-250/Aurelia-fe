@@ -1,0 +1,103 @@
+.shop-page {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.shop-header .h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+}
+
+.shop-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.shop-search,
+.shop-controls select {
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--ivory);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  min-width: 0;
+  flex: 1 1 140px;
+}
+
+.shop-search {
+  min-width: 0;
+  flex: 1 1 160px;
+}
+
+.shop-filters {
+  margin-bottom: 2rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+
+.filter-chip {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  color: var(--beige);
+  border-radius: 2px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.filter-chip:hover,
+.filter-chip.active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .shop-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shop-controls {
+    max-width: none;
+  }
+
+  .filter-chip {
+    font-size: 0.6rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .pagination .btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.7rem;
+  }
+}
